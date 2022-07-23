@@ -122,8 +122,11 @@ def sanitize_for_windows(filename: str, forbidden: str = '\\/:*?"<>|'):
 
 
 if __name__ == "__main__":
-    with open("token.txt", "r") as f:
-        token = f.read().strip()
-        data = Kobo(token)
-        data.save_all_surveys()
-        
+    if "token.txt" not in os.listdir():
+        print("Could not find the `token.txt` file.")
+    else:
+        with open("token.txt", "r") as f:
+            token = f.read().strip()
+            data = Kobo(token)
+            data.save_all_surveys()
+
